@@ -16,7 +16,7 @@ import {
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FilledNavLink, NavLink } from './NavLink';
 
-const MobileNavigation = ({ onLogin, authUser }) => {
+const MobileNavigation = ({ onLogin, onLogout, authUser }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -41,9 +41,12 @@ const MobileNavigation = ({ onLogin, authUser }) => {
           </DrawerBody>
           <DrawerFooter display="block">
             {authUser ? (
-              <Text fontWeight="500" textAlign="center">
-                Hello, {authUser.name}
-              </Text>
+              <VStack>
+                <Text fontWeight="500" textAlign="center">
+                  Hello, {authUser.name}
+                </Text>
+                <FilledNavLink onClick={onLogout}>Logout</FilledNavLink>
+              </VStack>
             ) : (
               <VStack alignItems="stretch">
                 <NavLink onClick={onLogin}>Log In</NavLink>

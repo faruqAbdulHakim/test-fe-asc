@@ -12,6 +12,10 @@ const Header = () => {
     dispatch(authUserActions.login());
   };
 
+  const logoutHandler = () => {
+    dispatch(authUserActions.logout())
+  }
+
   return (
     <Flex
       as="header"
@@ -23,13 +27,11 @@ const Header = () => {
       <Container maxW="1440px" px={{ base: '48px', lg: '64px' }}>
         <HStack spacing="36px" justifyContent="space-between">
           <Text fontWeight="700">Logo</Text>
-          <Box as="nav">
-            <Box flex="1" display={{ base: 'none', md: 'block' }}>
-              <DesktopNavigation onLogin={loginHandler} authUser={authUser} />
-            </Box>
-            <Box display={{ base: 'block', md: 'none' }}>
-              <MobileNavigation onLogin={loginHandler} authUser={authUser} />
-            </Box>
+          <Box as="nav" flex="1" display={{ base: 'none', md: 'block' }}>
+            <DesktopNavigation onLogin={loginHandler} onLogout={logoutHandler} authUser={authUser} />
+          </Box>
+          <Box as="nav" display={{ base: 'block', md: 'none' }}>
+            <MobileNavigation onLogin={loginHandler} onLogout={logoutHandler} authUser={authUser} />
           </Box>
         </HStack>
       </Container>
